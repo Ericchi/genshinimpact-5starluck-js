@@ -25,7 +25,9 @@
           var backColor;
           var luck;
           var description;
-          if (percent <= 10){
+          if (percent = 0) {
+            luck = "<h2>Please, input a number above 0</h2><p>You can find your pull number by counting how many pulls you did after the last time you got a 5-star unit in your wishes history.</p>"
+          } else if (percent <= 10){
             luck = "<h2>Extremely lucky</h2>"
             backColor = "#66ff66";
           } else if(percent <=25) {
@@ -46,6 +48,9 @@
           } else if(percent <=100) {
             luck = "<h2>Horribly unlucky</h2>"
             backColor = "#ff6666";
+          } else if(percent >100) {
+            luck = "<h2>How is this even possible?</h2>"
+            backColor = "#ff3300"
           }
           var description = percent + "% of people got a 5-star unit before you did.";
           document.getElementById("resultPar").innerHTML = "<style> p#resultPar {background-color: " + backColor + "} </style>" + luck + description;
