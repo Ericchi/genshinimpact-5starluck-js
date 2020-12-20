@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>GenshinLuck</title>
+    <style>
+      p { padding-left: 0.5em; padding-right: 0.5em; padding-bottom: 0.5em;}
+    </style>
+  </head>
+  <body>
+    <header><h1>Genshin Impact wishes luck calculator</h1></header>
+    <main>
+      <p>At which pull did you find your 5-star unit?</p>
+      <input type="number" id="pullText" value="" min="1", max="90">
+      <button onclick="calc()">Calculate luck</button>
+      <script>
+        var wishes = [ 0.6, 0.596, 0.592, 0.591, 0.586, 0.582, 0.579, 0.575, 0.571, 0.568, 0.565, 0.561, 0.558, 0.554, 0.552, 0.549, 0.545, 0.541, 0.539, 0.536, 0.531, 0.528, 0.525, 0.523, 0.519, 0.517, 0.513, 0.511, 0.507, 0.503, 0.501, 0.498, 0.495, 0.491, 0.489, 0.486, 0.483, 0.480, 0.477, 0.475, 0.471, 0.469, 0.467, 0.464, 0.461, 0.457, 0.456, 0.453, 0.448, 0.447, 0.445, 0.442, 0.439, 0.437, 0.434, 0.430, 0.428, 0.426, 0.423, 0.420, 0.418, 0.416, 0.413, 0.410, 0.408, 0.406, 0.404, 0.401, 0.399, 0.396, 0.393, 0.392, 0.388, 0.387, 0.384, 20.627, 13.946, 9.429, 6.375, 4.306, 2.914, 1.970, 1.332, 0.901, 0.608, 0.411, 0.278, 0.187, 0.126, 0.265];
+        function calc() {
+          var attempts = document.getElementById("pullText").value;
+          var percent = 0;
+          for (i=0; i<attempts; i++) {
+            percent = percent + wishes[i]
+          }
+          var backColor;
+          var luck;
+          var description;
+          if (percent <= 10){
+            luck = "<h2>Extremely lucky</h2>"
+            backColor = "#66ff66";
+          } else if(percent <=25) {
+            luck = "<h2>Really lucky</h2>"
+            backColor = "#99ff99";
+          } else if(percent <=45) {
+            luck = "<h2>Lucky</h2>"
+            backColor = "#ccffcc";
+          } else if(percent <=55) {
+            luck = "<h2>Average luck</h2>"
+            backColor = "#ffffcc";
+          } else if(percent <=75) {
+            luck = "<h2>Unlucky</h2>"
+            backColor = "#ffcccc";
+          } else if(percent <=90) {
+            luck = "<h2>Really unlucky</h2>"
+            backColor = "#ff9999";
+          } else if(percent <=100) {
+            luck = "<h2>Horribly unlucky</h2>"
+            backColor = "#ff6666";
+          }
+          var description = percent + "% of people got a 5-star unit before you did.";
+          document.getElementById("resultPar").innerHTML = "<style> p#resultPar {background-color: " + backColor + "} </style>" + luck + description;
+        }
+      </script>
+      <p id="resultPar"></p>
+    </main>
+    <footer>2020 Ericchi</footer>
+  </body>
+</html>
